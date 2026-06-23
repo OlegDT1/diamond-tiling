@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/generate-placeholders.mjs)",
+      "PowerShell($cmds = 'node','npm','npx','pnpm','yarn'; foreach \\($c in $cmds\\) { $p = \\(Get-Command $c -ErrorAction SilentlyContinue\\); if \\($p\\) { \"$c -> $\\($p.Source\\)\" } else { \"$c -> NOT FOUND\" } }; \"PATH node dirs:\"; \\(Get-ChildItem 'C:\\\\Program Files\\\\nodejs' -ErrorAction SilentlyContinue | Select-Object -First 3 Name\\))",
+      "PowerShell(winget install --id OpenJS.NodeJS.LTS -e --silent --accept-source-agreements --accept-package-agreements --disable-interactivity 2>&1)"
+    ]
+  }
+}
