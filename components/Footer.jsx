@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { navLinks, siteConfig } from '@/lib/site';
 import { services } from '@/lib/data';
+import { serviceAreas } from '@/lib/areas';
 import Logo from './Logo';
 import Icon from './Icons';
 
@@ -85,9 +86,10 @@ export default function Footer() {
               <li className="flex items-start gap-3 text-platinum-dim">
                 <Icon.pin width={18} height={18} className="mt-0.5 shrink-0 text-accent" />
                 <span>
-                  Serving {siteConfig.address.city}
+                  {siteConfig.address.street}
                   <br />
-                  &amp; the Greater Toronto Area
+                  {siteConfig.address.city}, {siteConfig.address.region}{' '}
+                  {siteConfig.address.postalCode}
                 </span>
               </li>
               <li className="flex items-start gap-3 text-platinum-dim">
@@ -99,6 +101,26 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 hairline" />
+
+        <div className="mt-8">
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
+            Service Areas
+          </h3>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            {serviceAreas.map((area) => (
+              <li key={area.slug}>
+                <Link
+                  href={`/service-areas/${area.slug}`}
+                  className="text-sm text-platinum-dim transition-colors hover:text-accent"
+                >
+                  Tile Installation {area.city}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12 hairline" />
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-xs text-platinum-dim sm:flex-row">
           <p>
