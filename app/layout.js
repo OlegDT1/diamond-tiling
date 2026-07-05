@@ -1,6 +1,7 @@
 import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { siteConfig } from '@/lib/site';
+import { Analytics } from '@vercel/analytics/next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import StructuredData from '@/components/StructuredData';
@@ -97,6 +98,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
