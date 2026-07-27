@@ -14,6 +14,16 @@
   body {
     @apply bg-ink text-platinum font-sans antialiased;
     text-rendering: optimizeLegibility;
+    /* Clearance for the fixed MobileCallBar so it never covers page content
+       (footer links, the contact form's submit button). Matches its lg:hidden
+       breakpoint — 1024px. */
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      padding-bottom: 0;
+    }
   }
 
   ::selection {

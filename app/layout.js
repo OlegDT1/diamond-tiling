@@ -4,6 +4,7 @@ import { siteConfig } from '@/lib/site';
 import { Analytics } from '@vercel/analytics/next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import MobileCallBar from '@/components/MobileCallBar';
 import StructuredData from '@/components/StructuredData';
 
 const inter = Inter({
@@ -98,6 +99,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        <MobileCallBar />
         <Analytics />
       </body>
     </html>
