@@ -1,9 +1,10 @@
 import { Stagger, StaggerItem } from './Reveal';
 
+// Keep every figure here factually defensible — these are public claims.
 const stats = [
   { value: '15+', label: 'Years of Experience' },
   { value: '600+', label: 'Projects Completed' },
-  { value: '4.9★', label: 'Average Rating' },
+  { value: 'Free', label: 'On-Site Quotes' },
   { value: '100%', label: 'Waterproofing Warranty' },
 ];
 

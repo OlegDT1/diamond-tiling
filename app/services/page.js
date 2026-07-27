@@ -79,10 +79,15 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/contact" className="btn-secondary mt-8">
-                      Request a Quote
-                      <Icon.arrow width={16} height={16} />
-                    </Link>
+                    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                      <Link href={`/services/${service.slug}`} className="btn-primary">
+                        {service.title} details
+                        <Icon.arrow width={16} height={16} />
+                      </Link>
+                      <Link href="/contact" className="btn-secondary">
+                        Request a Quote
+                      </Link>
+                    </div>
                   </div>
                 </Reveal>
               </div>

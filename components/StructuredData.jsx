@@ -35,13 +35,8 @@ export default function StructuredData() {
     })),
     openingHours: 'Mo-Sa 07:00-18:00',
     sameAs: Object.values(siteConfig.social),
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: siteConfig.rating.value,
-      reviewCount: siteConfig.rating.count,
-      bestRating: 5,
-      worstRating: 1,
-    },
+    // No aggregateRating here on purpose: review markup must describe real,
+    // verifiable reviews. Add it back only from genuine review data.
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Tile & Renovation Services',

@@ -5,7 +5,7 @@ export default function ServiceCard({ service }) {
   const IconComp = Icon[service.icon] || Icon.grid;
   return (
     <Link
-      href="/services"
+      href={`/services/${service.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-charcoal/50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-charcoal-light/60"
     >
       <span

@@ -14,10 +14,11 @@ const fadeUp = {
   }),
 };
 
+// Keep these verifiable — they are public claims about the business.
 const trustIndicators = [
   'WSIB Insured',
   'Certified Waterproofing',
-  '5-Star Client Reviews',
+  '15+ Years Experience',
   'Serving Toronto & GTA',
 ];
 

@@ -1,110 +1,129 @@
 import PageHero from '@/components/PageHero';
 import ReviewCard from '@/components/ReviewCard';
-import RatingStars from '@/components/RatingStars';
 import CTASection from '@/components/CTASection';
+import SectionHeading from '@/components/SectionHeading';
 import Reveal, { Stagger, StaggerItem } from '@/components/Reveal';
+import Icon from '@/components/Icons';
 import { testimonials } from '@/lib/data';
-import { siteConfig } from '@/lib/site';
+import { siteConfig, googleReviewsUrl } from '@/lib/site';
 
 export const metadata = {
-  title: 'Reviews | What Toronto Clients Say About Diamond Tiling',
+  title: 'Reviews | Tile Installation & Bathroom Renovations in Toronto',
   description:
-    'Read real reviews from Toronto and GTA homeowners, builders and contractors. Diamond Tiling holds a 4.9-star rating across 127+ reviews for premium tile installation.',
+    'Read verified Google reviews for Diamond Tiling — tile installation, custom showers and bathroom renovations across Toronto and the GTA.',
   alternates: { canonical: '/reviews' },
 };
 
-// Review schema for rich results.
-function ReviewSchema() {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: `${siteConfig.name} — Tile Installation Services`,
-    description: siteConfig.description,
-    brand: { '@type': 'Brand', name: siteConfig.name },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: siteConfig.rating.value,
-      reviewCount: siteConfig.rating.count,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    review: testimonials.map((t) => ({
-      '@type': 'Review',
-      author: { '@type': 'Person', name: t.name },
-      datePublished: t.date,
-      reviewRating: { '@type': 'Rating', ratingValue: t.rating, bestRating: 5 },
-      reviewBody: t.quote,
-    })),
-  };
-  return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-  );
-}
+// Deliberately no Review/AggregateRating markup: review structured data must
+// describe real, verifiable reviews collected on this site. Ours live on the
+// Google Business Profile, where Google already surfaces them.
+
+const commitments = [
+  {
+    icon: 'shield',
+    title: 'WSIB insured & fully covered',
+    description:
+      'Every crew on your property is insured, so you carry none of the liability for the work we do.',
+  },
+  {
+    icon: 'check',
+    title: 'Certified waterproofing',
+    description:
+      'Wet areas are built to manufacturer-certified standards and leak-tested before a single tile goes on.',
+  },
+  {
+    icon: 'star',
+    title: 'Walkthrough before we invoice',
+    description:
+      'We walk the finished space with you and correct anything that falls short of what we promised.',
+  },
+];
 
 export default function ReviewsPage() {
-  const distribution = [
-    { stars: 5, pct: 94 },
-    { stars: 4, pct: 5 },
-    { stars: 3, pct: 1 },
-    { stars: 2, pct: 0 },
-    { stars: 1, pct: 0 },
-  ];
+  const reviewsUrl = googleReviewsUrl();
 
   return (
     <>
-      <ReviewSchema />
       <PageHero
         eyebrow="Reviews"
-        title="Loved by homeowners & builders"
-        description="Our reputation is everything. Here is what clients across Toronto and the GTA have to say about working with Diamond Tiling."
+        title="What our clients say"
+        description="Our reputation is everything. Read verified reviews from Toronto and GTA homeowners, builders and contractors on our Google Business Profile."
       />
 
       <section className="py-20 sm:py-24">
         <div className="container-px">
           <Reveal>
-            <div className="grid gap-8 rounded-3xl border border-white/10 bg-charcoal/40 p-8 sm:p-10 lg:grid-cols-[280px_1fr] lg:items-center">
-              <div className="text-center lg:border-r lg:border-white/10 lg:pr-8">
-                <div className="font-display text-6xl font-semibold text-white">
-                  {siteConfig.rating.value}
-                </div>
-                <div className="mt-3 flex justify-center">
-                  <RatingStars rating={5} size={20} />
-                </div>
-                <p className="mt-3 text-sm text-platinum-dim">
-                  Based on {siteConfig.rating.count}+ Google reviews
-                </p>
-              </div>
-
-              <div className="space-y-2.5">
-                {distribution.map((row) => (
-                  <div key={row.stars} className="flex items-center gap-3 text-sm">
-                    <span className="w-12 shrink-0 text-platinum-dim">{row.stars} star</span>
-                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
-                      <span
-                        className="block h-full rounded-full bg-accent"
-                        style={{ width: `${row.pct}%` }}
-                      />
-                    </span>
-                    <span className="w-10 shrink-0 text-right text-platinum-dim">{row.pct}%</span>
-                  </div>
-                ))}
+            <div className="rounded-3xl border border-white/10 bg-charcoal/40 p-8 text-center sm:p-12">
+              <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+                Verified reviews on Google
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-platinum-dim">
+                We keep our reviews where you can trust them — on our Google Business Profile,
+                written by real clients and verified by Google. Read what homeowners and builders
+                across the GTA have to say, or leave a review of your own project.
+              </p>
+              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+                <a
+                  href={reviewsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Read our Google reviews
+                  <Icon.arrow width={18} height={18} />
+                </a>
+                <a href={siteConfig.phoneHref} className="btn-secondary">
+                  <Icon.phone width={18} height={18} />
+                  {siteConfig.phone}
+                </a>
               </div>
             </div>
           </Reveal>
 
-          <Stagger className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((review) => (
-              <StaggerItem key={review.name}>
-                <ReviewCard review={review} />
-              </StaggerItem>
-            ))}
-          </Stagger>
+          {testimonials.length ? (
+            <Stagger className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((review) => (
+                <StaggerItem key={review.name}>
+                  <ReviewCard review={review} />
+                </StaggerItem>
+              ))}
+            </Stagger>
+          ) : null}
+        </div>
+      </section>
+
+      <section className="border-t border-white/10 bg-ink-soft py-20 sm:py-24">
+        <div className="container-px">
+          <SectionHeading
+            align="center"
+            eyebrow="Why Clients Recommend Us"
+            title="What you can hold us to"
+            description="Reviews follow from how a job is run. These are the commitments behind every Diamond Tiling project."
+          />
+          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
+            {commitments.map((item) => {
+              const IconComp = Icon[item.icon] || Icon.check;
+              return (
+                <Reveal key={item.title}>
+                  <div className="h-full rounded-2xl border border-white/10 bg-charcoal/40 p-7">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15 text-accent">
+                      <IconComp width={22} height={22} />
+                    </span>
+                    <h3 className="mt-5 text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-platinum-dim">
+                      {item.description}
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       <CTASection
-        title="Join our list of happy clients"
-        description="Experience the Diamond Tiling difference on your next project. Request a quote and we’ll be in touch within one business day."
+        title="Ready to start your project?"
+        description="Request a quote and we’ll be in touch within one business day with clear, transparent pricing."
       />
     </>
   );
