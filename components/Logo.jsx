@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import { siteConfig } from '@/lib/site';
 
-// Brand wordmark. The white logo reads cleanly on the site's dark palette.
+// The single source of the Diamond Tiling wordmark for the whole site — the
+// header and footer both render this component, and /public/favicon.svg is
+// drawn from the same artwork so the tab icon matches. The white variant reads
+// cleanly on the site's dark palette; the dark variant (logo-ink.png) is used
+// for the Organization logo in structured data, where the surface is light.
 export default function Logo({ className = 'h-12 w-auto' }) {
   return (
     <Image
@@ -10,6 +14,9 @@ export default function Logo({ className = 'h-12 w-auto' }) {
       width={847}
       height={575}
       priority
+      // Renders ~120px wide at most; without this Next.js assumes full viewport
+      // width and ships a 1920px file for an 80px-tall mark.
+      sizes="200px"
       className={className}
     />
   );

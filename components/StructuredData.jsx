@@ -14,7 +14,9 @@ export default function StructuredData() {
     telephone: siteConfig.phone,
     email: siteConfig.email,
     image: `${siteConfig.url}/media/photos/backlit-mirror-ensuite.jpg`,
-    logo: `${siteConfig.url}/favicon.svg`,
+    // The real wordmark logo, not the favicon — this is what Google associates
+    // with the business. Dark-on-transparent reads correctly on light surfaces.
+    logo: `${siteConfig.url}/assets/logo-ink.png`,
     priceRange: '$$$',
     address: {
       '@type': 'PostalAddress',
