@@ -34,6 +34,17 @@ export default function sitemap() {
     priority: 0.9,
   }));
 
+  // Project case studies. High priority: they target specific high-intent
+  // repair queries and carry original project photography.
+  const projectPages = [
+    {
+      url: `${siteConfig.url}/projects/shower-leak-repair-toronto`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.8,
+    },
+  ];
+
   const areaPages = serviceAreas.map((area) => ({
     url: `${siteConfig.url}/service-areas/${area.slug}`,
     lastModified,
@@ -41,5 +52,5 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  return [...corePages, ...servicePages, ...areaPages];
+  return [...corePages, ...servicePages, ...projectPages, ...areaPages];
 }
