@@ -2,10 +2,11 @@ import Image from 'next/image';
 import { siteConfig } from '@/lib/site';
 
 // The single source of the Diamond Tiling wordmark for the whole site — the
-// header and footer both render this component, and /public/favicon.svg is
-// drawn from the same artwork so the tab icon matches. The white variant reads
-// cleanly on the site's dark palette; the dark variant (logo-ink.png) is used
-// for the Organization logo in structured data, where the surface is light.
+// header and footer both render this component, and the favicons in /public
+// (favicon.ico, favicon.png, apple-touch-icon.png) are generated from this same
+// artwork so the tab icon matches. The white variant reads cleanly on the
+// site's dark palette; the dark variant (logo-ink.png) is used for the
+// Organization logo in structured data, where the surface is light.
 export default function Logo({ className = 'h-12 w-auto' }) {
   return (
     <Image

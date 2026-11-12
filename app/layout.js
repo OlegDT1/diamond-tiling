@@ -74,8 +74,15 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
+  // Favicons are generated from the real wordmark (white on black) and served
+  // from /public at stable URLs so Google Search can crawl and cache them.
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png', sizes: '96x96' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+    shortcut: ['/favicon.ico'],
   },
 };
 
